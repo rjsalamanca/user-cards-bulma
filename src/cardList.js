@@ -1,36 +1,26 @@
 import React from 'react';
-
+import { Section, Column, Columns } from 'bloomer';
 import PropTypes from 'prop-types';
 
-import Card from './card';
-
-const cardListStyles = {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    flexWrap: 'wrap',
-}
-
-const listStyle = {
-    flexBasis: '25%',
-}
+import ProfileCard from './card';
 
 const CardList = props => {
     const { userData } = props;
     console.log(userData)
     return (
-        <ul style={cardListStyles}>
-            {userData.length > 0 ? 
-                userData.map(user => 
-                    <li style={listStyle} key={user.login.uuid}>
-                        <Card user={user} />
-                    </li>
-                )
-            : 
-                <li>No User Data</li>
-            }
-        </ul>
+        <Section>
+            <Columns>
+                {userData.length > 0 ? 
+                    userData.map(user => 
+                        <Column key={user.login.uuid}>
+                            <ProfileCard user={user} />
+                        </Column>
+                    )
+                : 
+                    <li>No User Data</li>
+                }
+            </Columns>
+        </Section>
     );
 }
 
